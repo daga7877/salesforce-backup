@@ -1,0 +1,100 @@
+<template>
+    <div class={sectionClass} style="background-color:white" >
+        <h3 class="slds-section__title">
+            <button class="slds-button slds-section__title-action whiteBackground" onclick={handleClick}>
+                <lightning-icon icon-name="utility:switch"
+                    class="slds-button__icon slds-button__icon_left slds-section__title-action-icon" size="x-small">
+                </lightning-icon>
+                <span class="slds-truncate" title={label}>{sectionName}</span>
+            </button>
+        </h3>
+        <div class="slds-section__content slds-is-relative">
+            <div class="slds-form" role="list">
+                <!-- <template if:true={loading}>
+                    <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+                </template> -->
+                <!-- <template if:false={loading}> -->
+                <div class="slds-form__row slds-form-element_horizontal">
+                    <template for:each={wrapList} for:item="wrap">
+                        <template if:true={checkFieldApiName}>
+                            <template if:false={nameEditMode}>
+                                <div class="slds-form__item slds-m-bottom_xx-small" role="listitem" key={wrap.fieldAPI}>
+                                    <div
+                                        class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_horizontal slds-hint-parent">
+                                        <span class="slds-form-element__label">
+                                            {wrap.fieldLabel}
+                                        </span>
+                                        <div class="slds-form-element__icon">
+                                            <template if:true={wrap.isTooltip}>
+                                                <lightning-helptext content={wrap.tooltip}></lightning-helptext>
+                                            </template>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-form-element__static slds-grid slds-grid_align-spread icn">
+                                                <template if:true={isBoolean}>
+                                                    <lightning-input type="checkbox" disabled="true"
+                                                        checked={checkBoxValue}>
+                                                    </lightning-input>
+                                                </template>
+                                                <template if:false={isBoolean}>
+                                                    <label class="wrapvalue">{wrap.value}</label>
+                                                </template>
+                                                <template if:false={wrap.isReadOnly}>
+                                                    <div class="slds-hint-parent">
+                                                    <lightning-button-icon  onclick={inlineEditName} icon-name="utility:edit"   
+                                                    variant="bare"  alternative-text="Edit" title="Edit"></lightning-button-icon>
+                                                </div>
+                                                </template>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={nameEditMode}>
+                                <div class="slds-form__item" role="listitem" key={wrap.fieldAPI}>
+                                    <div class="slds-form-element slds-form-element_horizontal slds-is-editing">
+                                        <label class="slds-form-element__label"
+                                            for="horizontal-form-element-id-02">{wrap.fieldLabel}</label>
+                                        <div class="slds-form-element__icon">
+                                            <template if:true={wrap.isTooltip}>
+                                                <lightning-helptext content={wrap.tooltip}></lightning-helptext>
+                                            </template>
+                                        </div>
+                                        <div class="slds-form-element__control">
+                                            <template if:true={isBoolean}>
+                                                <lightning-input name={wrap.fieldAPI} type="checkbox"
+                                                    onchange={handleCheckBox} checked={checkBoxValue}>
+                                                </lightning-input>
+                                            </template>
+                                            <template if:false={isBoolean}>
+                                                <template if:true={isPickList}>
+                                                    <lightning-combobox name={wrap.fieldAPI} value={wrap.value}
+                                                        options={optionvalue} onchange={handleChange} label="">
+                                                    </lightning-combobox>
+                                                </template>
+                                                <template if:false={isPickList}>
+                                                    <lightning-input name={wrap.fieldAPI} onchange={handleChange}
+                                                        value={wrap.value} label="">
+                                                    </lightning-input>
+                                                </template>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                    </template>
+                </div>
+                <!-- </template> -->
+            </div>
+            <br></br>
+            <template if:true={showSaveCancelBtn}>
+                <div class="slds-align_absolute-center">
+                    <lightning-button label="Cancel" onclick={handlecancel}></lightning-button>&nbsp;
+                    <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

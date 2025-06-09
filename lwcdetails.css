@@ -1,0 +1,24 @@
+.slds-form__item{
+    min-width : 49%;
+    max-width : 50%;
+}
+@media (max-width:767px) {
+    .slds-form__item{
+    min-width : 100%;
+    max-width : 100%;
+} 
+.whiteBackground{
+    background-color: white;
+}
+}
+.icn button.slds-button.slds-button_icon svg{
+    fill :#b0adab !important;
+}
+
+/* .custom-form-btn{
+    width:100%;
+}
+.custom-form-btn  button{
+    box-shadow:none !important;
+    border:0 !important;
+    } */
